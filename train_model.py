@@ -1,4 +1,3 @@
-import os
 import argparse
 
 import pytorch_lightning as pl
@@ -6,27 +5,28 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 
 from data.augmentation import DataAugmentationDINO
 from data.datamodule import DINODataModule
+from loss.dino_loss import DINOLoss
 from models.dino import DINO
-from models.models import MultiCropWrapper
-from utils import utils
+from models.models import VisionTransformer
 
-argparser = argparse.ArgumentParser(description="DINO Training Script")
 parser = argparse.ArgumentParser()
-parser = MultiCropWrapper.add_specific_args(parser)
 parser = DINO.add_specific_args(parser)
+parser = DINOLoss.add_specific_args(parser)
 parser = DataAugmentationDINO.add_specific_args(parser)
+parser = VisionTransformer.add_specific_args(parser)
 args = parser.parse_args()
 
 pl.seed_everything(123)
-utils.init_distributed_mode(args)
 
 
 #################################
 #####        DATASET        #####
 #################################
 
+args.data_path = 'dataset/imagenet-mini'
 datamodule = DINODataModule(
-    data_path=args.data_path
+    data_path=args.data_path,
+    batch_size=args.batch_size_per_gpu,
 )
 
 #################################
@@ -50,9 +50,8 @@ checkpoint_callback = ModelCheckpoint(
 
 trainer = pl.Trainer(
     max_epochs=args.epochs,
-    gpus=args.gpus,
+    accelerator='auto',
     callbacks=[checkpoint_callback],
-    precision=16,
 )
 
 trainer.fit(model, datamodule)

@@ -54,6 +54,5 @@ class DataAugmentationDINO(object):
     @staticmethod
     def add_specific_args(parser):
         parser.add_argument('--global_crops_scale', type=float, nargs='+', default=(0.4, 1.), help="Scale range of the cropped image before resizing, relatively to the origin image. Used for large global view cropping. When disabling multi-crop (--local_crops_number 0), werecommand using a wider range of scale")
-        parser.add_argument('--n_local_crops', type=int, default=8, help="Number of small local views to generate. Set this parameter to 0 to disable multi-crop training.")
         parser.add_argument('--local_crops_scale', type=float, nargs='+', default=(0.05, 0.4), help="Scale range of the cropped image before resizing, relatively to the origin image. Used for small local view cropping of multi-crop.""")
         return parser

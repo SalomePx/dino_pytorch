@@ -180,7 +180,6 @@ def cosine_scheduler(base_value, final_value, epochs, niter_per_ep, warmup_epoch
     assert len(schedule) == epochs * niter_per_ep
     return schedule
 
-
 def bool_flag(s):
     """
     Parse boolean arguments from the command line.
