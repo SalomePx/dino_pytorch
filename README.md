@@ -1,6 +1,6 @@
 # DINO_Pytorch
 
-This repository provides a PyTorch implementation of the DINO (Self-Distillation with No Labels) framework for self-supervised learning on images, using Vision Transformers (ViT) and PyTorch Lightning.
+This repository provides a structured PyTorch (2.7.0) implementation of the DINO (Self-Distillation with No Labels) framework for self-supervised learning on images. It uses Vision Transformers (ViT) and PyTorch Lightning modules for scalability and modularity. 
 
 ## Project Structure
 
@@ -10,7 +10,7 @@ DINO_Pytorch/
 │   ├── augmentation.py      # Data augmentation for DINO
 │   ├── datamodule.py        # PyTorch Lightning DataModule for loading datasets
 ├── dataset/
-│   └── imagenet-mini/       # Example dataset (ImageNet-Mini) with train/val folders
+│   └── imagenet-mini/       # Example dataset (ImageNet-mini) with train/val folders
 ├── loss/
 │   └── dino_loss.py         # DINO loss implementation
 ├── models/
@@ -23,13 +23,13 @@ DINO_Pytorch/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/DINO_Pytorch.git
-   cd DINO_Pytorch
+   git clone https://github.com/salomepx/dino_pytorch.git
+   cd dino_pytorch
    ```
 
 2. **Install dependencies:**
    ```bash
-   pip install torch torchvision pytorch-lightning
+   pip install -r requirements.txt
    ```
 
 3. **Download the dataset:**
@@ -42,14 +42,12 @@ DINO_Pytorch/
 Run the training script with desired arguments:
 
 ```bash
-python train_model.py --data_path dataset/imagenet-mini --epochs 100 --batch_size_per_gpu 64 --num_workers 4 --arch vit_tiny
+python train_model.py --data_path dataset/imagenet-mini --epochs 100 --arch vit_tiny
 ```
 
 **Arguments:**
 - `--data_path`: Path to the dataset folder.
 - `--epochs`: Number of training epochs.
-- `--batch_size_per_gpu`: Batch size per GPU.
-- `--num_workers`: Number of workers for data loading.
 - `--arch`: Model architecture (`vit_tiny`, `vit_small`, `vit_base`, etc.)
 
 Additional arguments for DINO, VisionTransformer, and DINOLoss can be set as needed.
@@ -77,11 +75,11 @@ Model checkpoints are saved in the `./checkpoints` directory.
 - [DINO: Emerging Properties in Self-Supervised Vision Transformers](https://arxiv.org/abs/2104.14294)
 - [Original DINO code (Facebook Research)](https://github.com/facebookresearch/dino)
 
-## License
-
-This project is released under the MIT License.
-
 ---
 
 **Contact:**  
 For questions or issues, please open an issue on GitHub.
+
+**To Do List:**  
+- [x] Create the training script
+- [] Create the evaluation script
