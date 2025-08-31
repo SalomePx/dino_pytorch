@@ -1,5 +1,7 @@
 # DINO_Pytorch
 
+<img src="https://miro.medium.com/v2/resize:fit:2400/1*f1Y6xXw2Uab_-T2Q0C02Zg.png" width="50"/>
+
 This repository provides a structured PyTorch (2.7.0) implementation of the DINO (Self-Distillation with No Labels) framework for self-supervised learning on images. It uses Vision Transformers (ViT) and PyTorch Lightning modules for scalability and modularity. 
 
 ## Project Structure
