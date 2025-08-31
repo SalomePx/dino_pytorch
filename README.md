@@ -82,4 +82,4 @@ For questions or issues, please open an issue on GitHub.
 
 **To Do List:**  
 - [x] Create the training script
-- [] Create the evaluation script
+- [ ] Create the evaluation script
